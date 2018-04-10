@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { List } from 'semantic-ui-react'
+import { selectBook } from '../actions/index';
+import { bindActionCreators } from 'redux';
+import { List } from 'semantic-ui-react';
 
 class BookList extends Component {
   renderList() {
     return this.props.books.map((book) => {
       return (
-        <List.Item key={book.title}>{book.title}</List.Item>
+        <List.Item
+          key={book.title}
+          onClick={() => this.props.selectBook(book)}
+        >
+          {book.title}
+        </List.Item>
       )
     })
   }
@@ -26,4 +33,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(BookList);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ selectBook: selectBook}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookList);
