@@ -4,7 +4,7 @@ import { List } from 'semantic-ui-react'
 
 class BookList extends Component {
   renderList() {
-    return this.props.books((book) => {
+    return this.props.books.map((book) => {
       return (
         <List.Item key={book.title}>{book.title}</List.Item>
       )
