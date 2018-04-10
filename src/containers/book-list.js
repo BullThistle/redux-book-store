@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
+import { List } from 'semantic-ui-react'
 
 export default class BookList extends Component {
   renderList() {
     return this.props.books((book) => {
       return (
-        <li key={book.title}>{book.title}</li>
+        <List.Item key={book.title}>{book.title}</List.Item>
       )
     })
   }
 
   render()  {
     return (
-      <ul>
+      <List>
         {this.renderList()}
-      </ul>
+      </List>
     )
   }
 }
